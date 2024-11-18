@@ -1,13 +1,13 @@
 {% set name = "torch-dftd" %}
-{% set version = "0.4.0" %}
+{% set version = "0.5.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/torch-dftd-{{ version }}.tar.gz
-  sha256: 964c1e90bda7ff22723e03bb3bf0f9c1f6149944d464752278a5915ba2c0c3c1
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_') }}-{{ version }}.tar.gz
+  sha256: 5b1a090dd1362153219328937df872d4b443fb97d3c1a0584ac3a027af83dcc6
 
 build:
   noarch: python
