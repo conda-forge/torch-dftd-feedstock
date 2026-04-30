@@ -1,0 +1,45 @@
+schema_version: 1
+
+context:
+  name: torch-dftd
+  version: "0.5.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: 5b1a090dd1362153219328937df872d4b443fb97d3c1a0584ac3a027af83dcc6
+
+build:
+  number: 2
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - ase >=3.18,<4.0.0
+    - pymatgen >=2020.1.28
+
+tests:
+  - python:
+      imports:
+        - torch_dftd
+      pip_check: true
+      python_version: ${{ python_min }}
+
+about:
+  summary: pytorch implementation of dftd2 & dftd3
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/pfnet-research/torch-dftd
+
+extra:
+  recipe-maintainers:
+    - jan-janssen
